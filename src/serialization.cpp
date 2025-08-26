@@ -122,6 +122,12 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     }
                 }
 
+                if (presence->activityType >= DISCORD_ACTIVITY_PLAYING &&
+                    presence->activityType <= DISCORD_ACTIVITY_COMPETING) {
+                    writer.Key("type");
+                    writer.Int(presence->activityType);
+                }
+
                 if ((presence->largeImageKey && presence->largeImageKey[0]) ||
                     (presence->largeImageText && presence->largeImageText[0]) ||
                     (presence->smallImageKey && presence->smallImageKey[0]) ||
